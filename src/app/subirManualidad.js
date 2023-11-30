@@ -2,35 +2,35 @@ import { collection, addDoc } from "https://www.gstatic.com/firebasejs/10.6.0/fi
 import { db } from "./firebase.js";
 
 window.addEventListener('DOMContentLoaded', () => {
-    const formularioSombrero = document.querySelector('#Formulario-Sombrero');
+    const formularioSoldado = document.querySelector('#Formulario-Soldado');
 
-    formularioSombrero.addEventListener('submit', async (e) => {
+    formularioSoldado.addEventListener('submit', async (e) => {
         e.preventDefault();
 
-        const NOMBRE = formularioSombrero['Nombre-Sombrero'].value;
-        const TIPO = formularioSombrero['Tipo-Sombrero'].value;
-        const COLOR = formularioSombrero['Color-Sombrero'].value;
-        const TAMAÑO = parseInt(formularioSombrero['Tamaño-Sombrero'].value);
-        const FECHA_FABRICACION = formularioSombrero['FechaFabricacion-Sombrero'].value;
+        const NOMBRE = formularioSoldado['Nombre-Soldado'].value;
+        const RANGO = formularioSoldado['Rango-Soldado'].value;
+        const ESPECIALIDAD = formularioSoldado['Especialidad-Soldado'].value;
+        const UNIDAD = formularioSoldado['Unidad-Soldado'].value;
+        const FECHA_INCORPORACION = formularioSoldado['FechaIncorporacion-Soldado'].value;
 
         try {
             // Utiliza addDoc para agregar un documento con un identificador generado automáticamente
-            const nuevoSombreroRef = await addDoc(collection(db, 'Sombreros'), {
+            const nuevoSoldadoRef = await addDoc(collection(db, 'Soldados'), {
                 Nombre: NOMBRE,
-                Tipo: TIPO,
-                Color: COLOR,
-                Tamaño: TAMAÑO,
-                FechaFabricacion: FECHA_FABRICACION
+                Rango: RANGO,
+                Especialidad: ESPECIALIDAD,
+                Unidad: UNIDAD,
+                FechaIncorporacion: FECHA_INCORPORACION
             });
 
             // Muestra un mensaje si todo sale bien
-            alert(`El sombrero ${NOMBRE} ha sido registrado exitosamente`);
+            alert(`El soldado ${NOMBRE} ha sido registrado exitosamente`);
 
             // Limpia el formulario
-            formularioSombrero.reset();
+            formularioSoldado.reset();
         } catch (error) {
             // Maneja el error y muestra un mensaje con el error
-            alert('Error al registrar el sombrero:', 'noValido');
+            alert('Error al registrar el soldado:', 'noValido');
         }
     });
 });
